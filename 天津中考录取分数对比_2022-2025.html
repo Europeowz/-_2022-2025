@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天津市中考录取分数对比 (2022-2025)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a2540;
+  --navy-light: #1a3a5c;
+  --gold: #c9953c;
+  --gold-light: #e8c97a;
+  --gold-dark: #a07630;
+  --teal: #2a9d8f;
+  --teal-light: #e8f5f2;
+  --cream: #f8f4ef;
+  --cream-dark: #efe8df;
+  --ivory: #faf8f5;
+  --slate: #4a5568;
+  --slate-light: #a0aec0;
+  --charcoal: #1a1a2e;
+  --white: #ffffff;
+  --rose: #d45d5d;
+  --green: #3a9d7a;
+  --shadow: 0 4px 24px rgba(10,37,64,0.06);
+  --shadow-lg: 0 12px 48px rgba(10,37,64,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-ui: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Noto Serif SC', serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+  --font-size-sm: 0.8125rem;
+  --font-size-base: 0.875rem;
+  --font-size-lg: 1rem;
+}
+
+/* --- Districts palette --- */
+[data-district="市九所"] { --badge-bg: #eef2ff; --badge-text: #4f46e5; --badge-border: #c7d2fe; }
+[data-district="和平区"] { --badge-bg: #fdf2f8; --badge-text: #db2777; --badge-border: #fbcfe8; }
+[data-district="河西区"] { --badge-bg: #ecfdf5; --badge-text: #059669; --badge-border: #a7f3d0; }
+[data-district="南开区"] { --badge-bg: #fffbeb; --badge-text: #d97706; --badge-border: #fde68a; }
+[data-district="河东区"] { --badge-bg: #f5f3ff; --badge-text: #7c3aed; --badge-border: #ddd6fe; }
+[data-district="河北区"] { --badge-bg: #eff6ff; --badge-text: #2563eb; --badge-border: #bfdbfe; }
+[data-district="红桥区"] { --badge-bg: #fff7ed; --badge-text: #ea580c; --badge-border: #fed7aa; }
+[data-district="武清区"] { --badge-bg: #f0fdfa; --badge-text: #0f766e; --badge-border: #99f6e4; }
+[data-district="宝坻区"] { --badge-bg: #faf5ff; --badge-text: #9333ea; --badge-border: #d8b4fe; }
+[data-district="西青区"] { --badge-bg: #fef9c3; --badge-text: #a16207; --badge-border: #fde047; }
+[data-district="滨海新区"] { --badge-bg: #e0f2fe; --badge-text: #0369a1; --badge-border: #bae6fd; }
+[data-district="津南区"] { --badge-bg: #fce7f3; --badge-text: #be185d; --badge-border: #fbcfe8; }
+[data-district="东丽区"] { --badge-bg: #d1fae5; --badge-text: #047857; --badge-border: #a7f3d0; }
+[data-district="北辰区"] { --badge-bg: #e0e7ff; --badge-text: #4338ca; --badge-border: #c7d2fe; }
+[data-district="蓟州区"] { --badge-bg: #fef3c7; --badge-text: #b45309; --badge-border: #fde68a; }
+[data-district="静海区"] { --badge-bg: #f3e8ff; --badge-text: #7e22ce; --badge-border: #e9d5ff; }
+[data-district="宁河区"] { --badge-bg: #cffafe; --badge-text: #0e7490; --badge-border: #a5f3fc; }
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-ui);
+  background: var(--cream);
+  color: var(--charcoal);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* --- Header --- */
+.header {
+  position: relative;
+  background: linear-gradient(135deg, var(--navy) 0%, #0d3355 50%, var(--navy-light) 100%);
+  padding: 48px 24px 0;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 20% 80%, rgba(201,149,60,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.header h1 {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+}
+.header h1 small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.5em;
+  color: var(--gold-light);
+  letter-spacing: 0.2em;
+  margin-top: 4px;
+}
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  padding: 6px 16px;
+  color: var(--gold-light);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.header-stats {
+  display: flex;
+  gap: 4px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+}
+.stat-pill strong {
+  color: var(--gold-light);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 32px;
+  position: relative;
+  z-index: 1;
+}
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Controls --- */
+.controls {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 20px 24px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.controls .search-wrap {
+  flex: 1 1 260px;
+  position: relative;
+  min-width: 200px;
+}
+.search-wrap svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--slate-light);
+  pointer-events: none;
+}
+.controls input[type="text"] {
+  width: 100%;
+  padding: 9px 12px 9px 36px;
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: var(--font-size-base);
+  background: var(--white);
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.controls input[type="text"]:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,149,60,0.15);
+}
+.controls input[type="text"]::placeholder { color: var(--slate-light); }
+.controls select {
+  padding: 9px 32px 9px 12px;
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: var(--font-size-base);
+  background: var(--white);
+  color: var(--charcoal);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%234a5568' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  min-width: 120px;
+}
+.controls select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,149,60,0.15);
+}
+.control-info {
+  margin-left: auto;
+  font-size: var(--font-size-sm);
+  color: var(--slate);
+  white-space: nowrap;
+}
+.control-info strong {
+  font-family: var(--font-mono);
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* --- Table --- */
+.table-container {
+  max-width: 1360px;
+  margin: 16px auto 24px;
+  padding: 0 24px;
+}
+.table-wrapper {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid rgba(10,37,64,0.05);
+}
+.table-inner {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+  min-width: 780px;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--navy);
+  color: rgba(255,255,255,0.9);
+  padding: 12px 10px;
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+thead th.col-school {
+  text-align: left;
+  padding-left: 16px;
+  min-width: 180px;
+}
+thead th.col-seq { width: 44px; min-width: 44px; }
+thead th.col-district { width: 72px; min-width: 72px; }
+thead th.col-category { width: 88px; min-width: 88px; }
+thead th.col-score {
+  width: 72px;
+  min-width: 64px;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+}
+thead th.col-score:hover { background: rgba(255,255,255,0.10); }
+thead th.col-score .sort-icon {
+  display: inline-block;
+  margin-left: 4px;
+  opacity: 0.4;
+  transition: opacity var(--transition);
+}
+thead th.col-score:hover .sort-icon { opacity: 1; }
+thead th.col-score.sorted .sort-icon { opacity: 1; color: var(--gold-light); }
+thead th.col-trend { width: 58px; min-width: 58px; }
+thead th .year-label { font-size: 0.85em; opacity: 0.7; display: block; font-weight: 400; }
+
+tbody tr {
+  transition: background var(--transition);
+  cursor: default;
+}
+tbody tr:hover { background: rgba(42,157,143,0.04); }
+tbody tr:nth-child(even) { background: var(--ivory); }
+tbody tr:nth-child(even):hover { background: rgba(42,157,143,0.06); }
+tbody td {
+  padding: 10px 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(10,37,64,0.04);
+  vertical-align: middle;
+}
+tbody td.col-seq {
+  color: var(--slate-light);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
+}
+tbody td.col-school {
+  text-align: left;
+  padding-left: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.district-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--badge-border);
+  white-space: nowrap;
+}
+.cat-tag {
+  font-size: 0.68rem;
+  color: var(--slate);
+  white-space: nowrap;
+}
+.score-cell {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--charcoal);
+}
+.score-cell .no-data { color: var(--slate-light); font-weight: 400; }
+.score-cell .change {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font-size: 0.65rem;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+.score-cell .change.up { color: var(--rose); }
+.score-cell .change.down { color: var(--green); }
+.score-cell .change.flat { color: var(--slate-light); }
+
+.trend-cell {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+.trend-cell.up { color: var(--rose); }
+.trend-cell.down { color: var(--green); }
+.trend-cell.flat { color: var(--slate-light); }
+.trend-cell .no-data { color: var(--slate-light); font-size: var(--font-size-sm); }
+
+/* --- Footer --- */
+.footer {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 20px 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: var(--font-size-sm);
+  color: var(--slate);
+}
+.footer a {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer a:hover { color: var(--gold); }
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  .header { padding: 28px 16px 0; }
+  .controls { padding: 16px 16px 0; gap: 8px; }
+  .controls .search-wrap { flex: 1 1 100%; }
+  .controls select { flex: 1; min-width: 0; }
+  .control-info { margin-left: 0; width: 100%; text-align: left; }
+  .table-container { padding: 12px 16px 20px; }
+  .header h1 { font-size: 1.5rem; }
+  .header-stats { gap: 4px; }
+  .stat-pill { font-size: 0.7rem; padding: 4px 10px; }
+  .footer { padding: 16px; flex-direction: column; text-align: center; }
+  thead th { padding: 8px 6px; font-size: 0.7rem; }
+  thead th.col-school { min-width: 140px; }
+  tbody td { padding: 8px 6px; font-size: 0.8rem; }
+  .score-cell { font-size: 0.8rem; }
+}
+
+/* --- Animations --- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.table-wrapper { animation: fadeUp 0.6s ease-out both; }
+.header-inner > * { animation: fadeUp 0.5s ease-out both; }
+.header-inner > *:nth-child(1) { animation-delay: 0.05s; }
+.header-inner > *:nth-child(2) { animation-delay: 0.12s; }
+.header-inner > *:nth-child(3) { animation-delay: 0.2s; }
+.controls { animation: fadeUp 0.5s 0.15s ease-out both; }
+
+/* --- Tooltip --- */
+[data-tip] {
+  position: relative;
+  cursor: help;
+}
+[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--charcoal);
+  color: white;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <h1>
+        天津中考录取分数对比
+        <small>2022 — 2025</small>
+      </h1>
+      <span class="header-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/></svg>
+        海河之畔 · 学府争辉
+      </span>
+    </div>
+    <div class="header-stats">
+      <span class="stat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>收录学校 <strong id="totalCount">0</strong></span>
+      <span class="stat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>数据跨度 <strong>2022—2025</strong></span>
+      <span class="stat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16"/><path d="M4 20V4"/><path d="M20 20V8"/><path d="M8 20V12"/><path d="M12 20V10"/><path d="M16 20V6"/></svg>最高分 <strong id="maxScore">—</strong></span>
+      <span class="stat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16"/><path d="M4 20V4"/><path d="M20 20V8"/><path d="M8 20V16"/><path d="M12 20V14"/><path d="M16 20V10"/></svg>最低分 <strong id="minScore">—</strong></span>
+    </div>
+  </div>
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 24C240 48 480 0 720 24S1200 48 1440 24V48H0V24Z" fill="#f8f4ef"/>
+      <path d="M0 32C240 48 480 16 720 32S1200 48 1440 32V48H0V32Z" fill="rgba(248,244,239,0.5)"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ========== CONTROLS ========== -->
+<div class="controls">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="搜索学校名称..." oninput="filterTable()">
+  </div>
+  <select id="districtFilter" onchange="filterTable()">
+    <option value="">全部区域</option>
+    <option value="中心市区">中心市区（市内六区+市九所）</option>
+    <option value="市九所">— 市九所</option>
+    <option value="和平区">— 和平区</option>
+    <option value="河西区">— 河西区</option>
+    <option value="南开区">— 南开区</option>
+    <option value="河东区">— 河东区</option>
+    <option value="河北区">— 河北区</option>
+    <option value="红桥区">— 红桥区</option>
+    <option value="西青区">西青区</option>
+    <option value="津南区">津南区</option>
+    <option value="东丽区">东丽区</option>
+    <option value="北辰区">北辰区</option>
+    <option value="武清区">武清区</option>
+    <option value="宝坻区">宝坻区</option>
+    <option value="静海区">静海区</option>
+    <option value="宁河区">宁河区</option>
+    <option value="蓟州区">蓟州区</option>
+    <option value="滨海新区">滨海新区</option>
+  </select>
+  <select id="categoryFilter" onchange="filterTable()">
+    <option value="">全部类型</option>
+    <option value="市教委直属">市教委直属</option>
+    <option value="区属市重点">区属市重点</option>
+    <option value="区级重点">区级重点</option>
+    <option value="民办">民办</option>
+  </select>
+  <select id="yearFilter" onchange="filterTable()">
+    <option value="">全部年份</option>
+    <option value="2023">2023年起有数据</option>
+    <option value="2022">2022年起有数据</option>
+    <option value="4">4年均有数据</option>
+  </select>
+  <span class="control-info">显示 <strong id="displayCount">0</strong> / <span id="totalDisplay">0</span> 所学校</span>
+</div>
+
+<!-- ========== TABLE ========== -->
+<div class="table-container">
+  <div class="table-wrapper">
+    <div class="table-inner">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-seq">#</th>
+            <th class="col-school">学校名称</th>
+            <th class="col-district">区域</th>
+            <th class="col-category">类别</th>
+            <th class="col-score" data-col="y2022" onclick="sortTable('y2022')">
+              2022<span class="year-label">录取线</span><span class="sort-icon">⇅</span>
+            </th>
+            <th class="col-score" data-col="y2023" onclick="sortTable('y2023')">
+              2023<span class="year-label">录取线</span><span class="sort-icon">⇅</span>
+            </th>
+            <th class="col-score" data-col="y2024" onclick="sortTable('y2024')">
+              2024<span class="year-label">录取线</span><span class="sort-icon">⇅</span>
+            </th>
+            <th class="col-score" data-col="y2025" onclick="sortTable('y2025')">
+              2025<span class="year-label">录取线</span><span class="sort-icon">⇅</span>
+            </th>
+            <th class="col-trend">趋势</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <span>数据来源：天津市教育招生考试院 · 招考资讯网</span>
+  <span>分数线仅供参考，以官方发布为准</span>
+</footer>
+
+<script>
+// ==============================
+//  DATA
+// ==============================
+const SCHOOLS = [
+  // ══════ 市九所 ══════
+  { n:'天津市第一中学',            d:'市九所', c:'市教委直属', y22:null, y23:769.5, y24:772.25, y25:768.9 },
+  { n:'天津市南开中学',            d:'市九所', c:'市教委直属', y22:null, y23:767.65,y24:770.75, y25:766.09 },
+  { n:'天津市耀华中学',            d:'市九所', c:'市教委直属', y22:null, y23:764.25,y24:768.25, y25:762.8 },
+  { n:'天津市新华中学',            d:'市九所', c:'市教委直属', y22:null, y23:760,   y24:764.55, y25:758.25 },
+  { n:'天津市实验中学',            d:'市九所', c:'市教委直属', y22:null, y23:757,   y24:762.5,  y25:755.15 },
+  { n:'天津市实验中学王克昌班',      d:'市九所', c:'市教委直属', y22:null, y23:756,   y24:761.6,  y25:753.95 },
+  { n:'天津市第七中学',            d:'市九所', c:'区属市重点', y22:null, y23:734.25,y24:741.2,  y25:734.15 },
+  { n:'天津市天津中学',            d:'市九所', c:'市教委直属', y22:null, y23:731.65,y24:739.95, y25:730.25 },
+  { n:'天津市第二中学',            d:'市九所', c:'区属市重点', y22:null, y23:727.6, y24:738.1,  y25:730.5 },
+  { n:'天津市第三中学',            d:'市九所', c:'区属市重点', y22:null, y23:716,   y24:725.25, y25:713.2 },
+
+  // ══════ 和平区 ══════
+  { n:'天津市第二十中学',          d:'和平区', c:'区属市重点', y22:764.75,y23:755,   y24:760.75, y25:753 },
+  { n:'天津市第二南开学校',         d:'和平区', c:'区属市重点', y22:759.75,y23:747.45,y24:754.75, y25:746.7 },
+  { n:'天津市第五十五中学',         d:'和平区', c:'区属市重点', y22:751.25,y23:736.25,y24:747.5,  y25:737.5 },
+  { n:'天津市双菱中学',            d:'和平区', c:'民办',      y22:746.5, y23:729.45,y24:743.25, y25:730.8 },
+  { n:'天津市第二耀华中学',         d:'和平区', c:'区属',      y22:740.7, y23:726.5, y24:737,    y25:728.75 },
+  { n:'天津市第二十一中学',         d:'和平区', c:'区属市重点', y22:743.55,y23:722,   y24:736.25, y25:726.15 },
+  { n:'天津市汇文中学',            d:'和平区', c:'区属市重点', y22:734.25,y23:718,   y24:730.6,  y25:722.25 },
+  { n:'天津市益中学校',            d:'和平区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:716.05 },
+  { n:'天津市建华中学',            d:'和平区', c:'民办',      y22:700.9, y23:698.15,y24:711.45, y25:707.65 },
+  { n:'天津市嘉诚中学',            d:'和平区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:695.73 },
+
+  // ══════ 河西区 ══════
+  { n:'天津市第四中学',            d:'河西区', c:'区属市重点', y22:761.65,y23:751.5, y24:758,    y25:747.9 },
+  { n:'天津市第二新华中学',         d:'河西区', c:'区属',      y22:761.25,y23:748.25,y24:754.74, y25:746.5 },
+  { n:'天津市第四十二中学',         d:'河西区', c:'区属市重点', y22:757.25,y23:745,   y24:752.5,  y25:742 },
+  { n:'天津市海河中学',            d:'河西区', c:'区属市重点', y22:753.9, y23:738.4, y24:748.5,  y25:735.75 },
+  { n:'天津市觉民中学',            d:'河西区', c:'区属',      y22:719.1, y23:706.75,y24:733.75, y25:724.9 },
+  { n:'天津市第四十一中学小语种班',  d:'河西区', c:'区属市重点', y22:735,   y23:722.25,y24:730.1,  y25:722 },
+  { n:'北京师范大学天津附属中学',       d:'河西区', c:'区属市重点', y22:730.89,y23:714.5, y24:723.5,  y25:714.25 },
+  { n:'天津市梧桐中学',            d:'河西区', c:'区属',      y22:724.35,y23:710.7, y24:721.8,  y25:711.7 },
+  { n:'天津市第四十一中学',         d:'河西区', c:'区属市重点', y22:728,   y23:710.5, y24:721.25, y25:708.5 },
+  { n:'天津市卓越中学',            d:'河西区', c:'区属',      y22:696.88,y23:698,   y24:716.31, y25:706.35 },
+  { n:'天津市河西区南开翔宇学校',    d:'河西区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:704.25 },
+  { n:'天津市微山路中学',           d:'河西区', c:'区级重点',  y22:703.25,y23:693.25,y24:706.25, y25:695.15 },
+  { n:'天津市梅江中学',            d:'河西区', c:'区级重点',  y22:683.5, y23:678.25,y24:692.75, y25:683 },
+  { n:'天津市天明高级中学',         d:'河西区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:666.65 },
+  { n:'天津市培杰中学',            d:'河西区', c:'民办',      y22:676.8, y23:667.25,y24:672.3,  y25:649.25 },
+
+  // ══════ 南开区 ══════
+  { n:'天津市南开日新学校',         d:'南开区', c:'民办',      y22:null,  y23:null,  y24:764,    y25:760.75 },
+  { n:'天津市南开学校鹏飞学校',      d:'南开区', c:'区属',      y22:null,  y23:null,  y24:754.05, y25:745 },
+  { n:'南开大学附属中学',      d:'南开区', c:'区属市重点', y22:749.25,y23:735.25,y24:745.35, y25:729 },
+  { n:'天津市崇化中学',            d:'南开区', c:'区属市重点', y22:731.5, y23:718.3, y24:730.73, y25:718.05 },
+  { n:'天津市第二十五中学',         d:'南开区', c:'区属市重点', y22:726.5, y23:714.7, y24:726,    y25:715.25 },
+  { n:'天津大学附属中学',      d:'南开区', c:'区属市重点', y22:721.25,y23:707.8, y24:718.81, y25:707.2 },
+  { n:'天津市第四十三中学',         d:'南开区', c:'区属市重点', y22:710.34,y23:699.25,y24:707.65, y25:695.5 },
+  { n:'天津市南开翔宇学校',         d:'南开区', c:'民办',      y22:712.5, y23:null,  y24:null,   y25:703 },
+  { n:'天津市第九中学',            d:'南开区', c:'区级重点',  y22:692.5, y23:684,   y24:696.1,  y25:679.7 },
+  { n:'天津市南开田家炳中学',       d:'南开区', c:'区级重点',  y22:681.2, y23:673.15,y24:686.9,  y25:673.05 },
+  { n:'天津市南开区美达菲学校',      d:'南开区', c:'民办',      y22:658,   y23:null,  y24:null,   y25:692.8 },
+  { n:'天津市南大奥宇高级中学',      d:'南开区', c:'民办',      y22:null,  y23:null,  y24:607.85, y25:null },
+
+  // ══════ 河东区 ══════
+  { n:'天津市第四十五中学',         d:'河东区', c:'区属市重点', y22:731.94,y23:719.5, y24:732.31, y25:720.05 },
+  { n:'天津市第一〇二中学',         d:'河东区', c:'区属市重点', y22:718.05,y23:706.5, y24:719,    y25:709.7 },
+  { n:'天津市河东区太阳城学校',      d:'河东区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:703.3 },
+  { n:'天津市第五十四中学',         d:'河东区', c:'区属市重点', y22:693.1, y23:686.55,y24:697,    y25:686.75 },
+  { n:'天津市第一〇二中学津华学校',   d:'河东区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:679.9 },
+  { n:'天津市第四十五中学华英学校',  d:'河东区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:669.8 },
+  { n:'天津市第三十二中学',         d:'河东区', c:'区级重点',  y22:666.25,y23:661.2, y24:676,    y25:660.75 },
+  { n:'天津市第八十二中学',         d:'河东区', c:'区级重点',  y22:647.55,y23:645.6, y24:662.25, y25:648.4 },
+  { n:'天津市第八中学',            d:'河东区', c:'区级重点',  y22:624,   y23:630.25,y24:650.2,  y25:641.25 },
+  { n:'天津市第九十八中学',         d:'河东区', c:'区级重点',  y22:608.4, y23:614.15,y24:632.75, y25:626.65 },
+  { n:'天津市伯苓高级中学',         d:'河东区', c:'民办',      y22:637.47,y23:null,  y24:null,   y25:null },
+
+  // ══════ 河北区 ══════
+  { n:'天津市第一中学河北学校',      d:'河北区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:740.5 },
+  { n:'天津外国语大学附属外国语学校', d:'河北区', c:'市教委直属', y22:null, y23:null, y24:743.05, y25:738.75 },
+  { n:'天津外国语大学附属河北外国语中学', d:'河北区', c:'区属市重点', y22:null, y23:null, y24:710.9, y25:711.65 },
+  { n:'天津市第十四中学',          d:'河北区', c:'区属市重点', y22:705.8, y23:694.25,y24:707.65, y25:698.75 },
+  { n:'天津市第五十七中学',         d:'河北区', c:'区属市重点', y22:679.15,y23:672.45,y24:689.25, y25:677.5 },
+  { n:'天津市扶轮中学',            d:'河北区', c:'区属市重点', y22:664.6, y23:659.25,y24:678.15, y25:668.6 },
+  { n:'天津市教育科学研究院附属河北中学',    d:'河北区', c:'区级重点',  y22:649.75,y23:652.22,y24:669.39, y25:655.05 },
+  { n:'天津市木斋中学',            d:'河北区', c:'区级重点',  y22:620.2, y23:626.35,y24:644.65, y25:638.75 },
+  { n:'天津市求真高级中学',         d:'河北区', c:'民办',      y22:594.75,y23:null,  y24:null,   y25:599.35 },
+  { n:'天津市博文中学',            d:'河北区', c:'民办',      y22:587.8, y23:null,  y24:null,   y25:593.95 },
+
+  // ══════ 红桥区 ══════
+  { n:'天津市耀华中学红桥学校',      d:'红桥区', c:'区属',      y22:null,  y23:733.7, y24:744.75, y25:728.1 },
+  { n:'天津市第五中学',            d:'红桥区', c:'区属市重点', y22:715.05,y23:703.75,y24:715.45, y25:702.75 },
+  { n:'天津市民族中学',            d:'红桥区', c:'区属市重点', y22:696.3, y23:689.75,y24:700.35, y25:690.5 },
+  { n:'天津市复兴中学',            d:'红桥区', c:'市教委直属', y22:673.65,y23:667.8, y24:684.95, y25:671.15 },
+  { n:'河北工业大学附属红桥中学', d:'红桥区', c:'区属市重点', y22:665.2, y23:658.85, y24:674.8, y25:660.8 },
+  { n:'天津市瑞景中学',            d:'红桥区', c:'市教委直属', y22:637.25,y23:640.6, y24:658.9,  y25:646.75 },
+  { n:'河北工业大学附属实验学校', d:'红桥区', c:'区级重点', y22:624.7, y23:627.25, y24:643.45, y25:639 },
+
+  // ══════ 西青区 ══════
+  { n:'天津市津衡高级中学',         d:'西青区', c:'民办',      y22:747.31,y23:null,  y24:null,   y25:742 },
+  { n:'天津市为明学校',            d:'西青区', c:'民办',      y22:732.5, y23:null,  y24:null,   y25:736.25 },
+  { n:'天津市益中西青学校',         d:'西青区', c:'民办',      y22:704.83,y23:null,  y24:null,   y25:698 },
+  { n:'天津市华诚中学',            d:'西青区', c:'民办',      y22:569.7, y23:null,  y24:null,   y25:null },
+
+  // ══════ 武清区 ══════
+  { n:'天津市武清区杨村第一中学',         d:'武清区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:745 },
+  { n:'天津市武清区杨村第三中学',         d:'武清区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:720.57 },
+  { n:'天津市耀华中学武清学校',      d:'武清区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:710.69 },
+  { n:'天津市天和城实验中学',        d:'武清区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:688 },
+  { n:'天津市武清区杨村第四中学',         d:'武清区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:669.95 },
+
+  // ══════ 宝坻区 ══════
+  { n:'天津市宝坻区第一中学',        d:'宝坻区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:717.85 },
+  { n:'天津市宝坻区第四中学',        d:'宝坻区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:631.4 },
+  { n:'天津市宝坻区第九中学',        d:'宝坻区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:629.5 },
+
+  // ══════ 滨海新区 ══════
+  { n:'天津市滨海新区塘沽第一中学',         d:'滨海新区', c:'区属',    y22:null,  y23:null,  y24:768.2,  y25:768.2 },
+  { n:'天津市南开中学滨海生态城学校', d:'滨海新区', c:'区属',  y22:null,  y23:null,  y24:760.25, y25:760.25 },
+  { n:'天津市滨海新区大港第一中学',         d:'滨海新区', c:'区属',    y22:null,  y23:null,  y24:730.25, y25:730 },
+  { n:'天津经济技术开发区第一中学',        d:'滨海新区', c:'区属',    y22:null,  y23:null,  y24:741.76, y25:null },
+  { n:'天津市滨海新区汉沽第一中学',         d:'滨海新区', c:'区属',    y22:null,  y23:null,  y24:684,    y25:715 },
+  { n:'天津市英华实验学校',         d:'滨海新区', c:'民办',    y22:757.16,y23:null,  y24:null,   y25:733.25 },
+
+  // ══════ 津南区 ══════
+  { n:'天津市咸水沽第一中学',      d:'津南区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:717.3 },
+  { n:'天津市咸水沽第二中学',      d:'津南区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:700.85 },
+  { n:'天津市双港中学',           d:'津南区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:687.25 },
+  { n:'海河教育园区南开学校',      d:'津南区', c:'区属',      y22:null,  y23:null,  y24:677,    y25:662.6 },
+  { n:'天津市实验中学津南学校',    d:'津南区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:651.1 },
+  { n:'南开大学附属中学津南学校',  d:'津南区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:649.1 },
+
+  // ══════ 东丽区 ══════
+  { n:'天津市第一百中学',         d:'东丽区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:700.75 },
+  { n:'天津市第一中学东丽学校',    d:'东丽区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:684.75 },
+  { n:'天津市四合庄中学',         d:'东丽区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:657.35 },
+  { n:'天津市钢管公司中学',       d:'东丽区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:635.1 },
+  { n:'天津市百华实验中学',       d:'东丽区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:617.75 },
+
+  // ══════ 北辰区 ══════
+  { n:'天津市第四十七中学',       d:'北辰区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:720.08 },
+  { n:'天津市华辰学校',           d:'北辰区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:704 },
+
+  // ══════ 蓟州区 ══════
+  { n:'天津市蓟州区第一中学',     d:'蓟州区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:719.85 },
+
+  // ══════ 静海区 ══════
+  { n:'天津市静海区第一中学',     d:'静海区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:704.95 },
+  { n:'天津市翔宇力仁学校',       d:'静海区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:632.85 },
+  { n:'天津市静文高级中学',       d:'静海区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:612.5 },
+
+  // ══════ 宁河区 ══════
+  { n:'天津市宁河区芦台第一中学',  d:'宁河区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:699 },
+
+  // ══════ 补充学校 ══════
+  { n:'天津市红桥区新华中学和苑学校', d:'红桥区', c:'区属',  y22:null,  y23:null,  y24:null,   y25:707.85 },
+  { n:'天津市城关中学',           d:'武清区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:662.15 },
+  { n:'天津法耀高级中学',         d:'西青区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:695.25 },
+  { n:'天津市自立中学',           d:'河西区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:642.6 },
+  { n:'天津市南开区誉英学校',     d:'南开区', c:'区属',      y22:null,  y23:null,  y24:null,   y25:702.65 },
+  { n:'天津市天开高级中学',       d:'河西区', c:'民办',      y22:null,  y23:null,  y24:null,   y25:650.2 },
+];
+
+// ==============================
+//  RENDER
+// ==============================
+let currentSort = { col: null, dir: 0 }; // 0=unsorted, 1=asc, -1=desc
+
+function getYears(s) {
+  return [
+    { k:'y2022', v:s.y22 },
+    { k:'y2023', v:s.y23 },
+    { k:'y2024', v:s.y24 },
+    { k:'y2025', v:s.y25 },
+  ];
+}
+function firstYear(s) { const y=getYears(s).find(x=>x.v!==null); return y ? y.k : null; }
+function lastYear(s) { const y=[...getYears(s)].reverse().find(x=>x.v!==null); return y ? y.k : null; }
+
+function trend(s) {
+  const first=getYears(s).find(x=>x.v!==null);
+  const last=[...getYears(s)].reverse().find(x=>x.v!==null);
+  if (!first || !last || first===last) return null;
+  if (last.v > first.v) return 'up';
+  if (last.v < first.v) return 'down';
+  return 'flat';
+}
+
+function fmt(v) {
+  return v !== null && v !== undefined ? v.toFixed(v%1===0?0:2) : null;
+}
+
+function val(v) { return (v!==null && v!==undefined) ? v : null; }
+
+function render(data) {
+  const tbody = document.getElementById('tableBody');
+  const html = [];
+  data.forEach((s, i) => {
+    const t = trend(s);
+    const trendLabel = t==='up' ? '↑' : t==='down' ? '↓' : t==='flat' ? '→' : '—';
+    const trendClass = t ? t : '';
+
+    const years = [
+      { cls:'y2022', v:s.y22 },
+      { cls:'y2023', v:s.y23 },
+      { cls:'y2024', v:s.y24 },
+      { cls:'y2025', v:s.y25 },
+    ];
+
+    html.push(`<tr data-district="${s.d}">`);
+    html.push(`<td class="col-seq">${i+1}</td>`);
+    html.push(`<td class="col-school">${s.n}</td>`);
+    html.push(`<td><span class="district-badge">${s.d}</span></td>`);
+    html.push(`<td><span class="cat-tag">${s.c}</span></td>`);
+
+    years.forEach((yr, idx) => {
+      const f = fmt(yr.v);
+      if (f === null) {
+        html.push(`<td class="score-cell"><span class="no-data">—</span></td>`);
+      } else {
+        // year-over-year change
+        let changeHtml = '';
+        if (idx > 0) {
+          const prev = years[idx-1].v;
+          if (prev !== null && yr.v !== null) {
+            const diff = yr.v - prev;
+            if (diff > 0) changeHtml = `<span class="change up">↑${diff.toFixed(diff%1===0?0:2)}</span>`;
+            else if (diff < 0) changeHtml = `<span class="change down">↓${Math.abs(diff).toFixed(diff%1===0?0:2)}</span>`;
+            else changeHtml = `<span class="change flat">→0</span>`;
+          }
+        }
+        html.push(`<td class="score-cell">${f}${changeHtml}</td>`);
+      }
+    });
+
+    html.push(`<td class="trend-cell ${trendClass}"><span>${trendLabel}</span></td>`);
+    html.push('</tr>');
+  });
+  tbody.innerHTML = html.join('');
+}
+
+// ==============================
+//  FILTER
+// ==============================
+function filterTable() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const district = document.getElementById('districtFilter').value;
+  const category = document.getElementById('categoryFilter').value;
+  const yearReq = document.getElementById('yearFilter').value;
+
+  let filtered = SCHOOLS.filter(s => {
+    if (q && !s.n.includes(q)) return false;
+    if (district === '中心市区') { if (!['市九所','和平区','河西区','南开区','河东区','河北区','红桥区'].includes(s.d)) return false; }
+  else if (district && s.d !== district) return false;
+    if (category && s.c !== category) return false;
+    if (yearReq === '4') { if (s.y22===null || s.y23===null || s.y24===null || s.y25===null) return false; }
+    else if (yearReq === '2022') { if (s.y22===null) return false; }
+    else if (yearReq === '2023') { if (s.y23===null) return false; }
+    return true;
+  });
+
+  // compute stats pre-sort
+  updateStats(filtered);
+
+  if (currentSort.col) {
+    const dir = currentSort.dir;
+    filtered.sort((a, b) => {
+      const va = getVal(a, currentSort.col);
+      const vb = getVal(b, currentSort.col);
+      if (va === null && vb === null) return 0;
+      if (va === null) return 1;
+      if (vb === null) return -1;
+      return dir * (va - vb);
+    });
+  }
+
+  render(filtered);
+  document.getElementById('displayCount').textContent = filtered.length;
+  document.getElementById('totalDisplay').textContent = SCHOOLS.length;
+}
+
+function getVal(s, col) {
+  switch(col) {
+    case 'y2022': return s.y22;
+    case 'y2023': return s.y23;
+    case 'y2024': return s.y24;
+    case 'y2025': return s.y25;
+    default: return null;
+  }
+}
+
+function updateStats(data) {
+  document.getElementById('totalCount').textContent = SCHOOLS.length;
+  let maxV = -Infinity, minV = Infinity;
+  data.forEach(s => {
+    [s.y22, s.y23, s.y24, s.y25].forEach(v => {
+      if (v !== null) { if (v > maxV) maxV = v; if (v < minV) minV = v; }
+    });
+  });
+  document.getElementById('maxScore').textContent = maxV > -Infinity ? maxV.toFixed(maxV%1===0?0:2) : '—';
+  document.getElementById('minScore').textContent = minV < Infinity ? minV.toFixed(minV%1===0?0:2) : '—';
+}
+
+// ==============================
+//  SORT
+// ==============================
+function sortTable(col) {
+  const ths = document.querySelectorAll('thead th.col-score');
+  ths.forEach(th => th.classList.remove('sorted'));
+
+  if (currentSort.col === col) {
+    currentSort.dir = currentSort.dir === 1 ? -1 : 1;
+  } else {
+    currentSort.col = col;
+    currentSort.dir = 1;
+  }
+
+  // highlight sorted col
+  const el = document.querySelector(`thead th.col-score[data-col="${col}"]`);
+  if (el) el.classList.add('sorted');
+
+  filterTable();
+}
+
+// Initial load
+filterTable();
+</script>
+</body>
+</html>
